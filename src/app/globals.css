@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
+@import "public/fonts/stylesheet.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,4 +34,46 @@ body {
   .bg-grad{
     background: linear-gradient(23deg, #2F1D3C 0%, #1F2745 28%, #284F5B 82%, #3F635A 100%);
   }
+
+  .pitch-bg{
+    background: linear-gradient(225deg, #171717 0%, #32323E 100%);
+  }
+
+  .white-grad{
+    background: linear-gradient(360deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 100%);
+    box-shadow: 0px 1.993883728981018px 9.9694185256958px 0px rgba(255, 255, 255, 0.25) inset;
+  }
+  .white-grad-active{
+    background: linear-gradient(359deg, #A357D3 0%, #E06EE2 0.01%, rgba(217, 217, 217, 0.00) 100%);
+    box-shadow: 0px 1.993883728981018px 9.9694185256958px 0px rgba(255, 255, 255, 0.25) inset;
+  }
+  .white-grad-passive{
+    background: linear-gradient(359deg, #A357D3 0%, #E06EE2 0.01%, rgba(217, 217, 217, 0.00) 100%);
+  }
+
+  .usecase-orange{
+    background: linear-gradient(359deg, #FFA95A 0.01%, rgba(217, 217, 217, 0.00) 100%);
+    mix-blend-mode: hard-light;
+  }
+
+  .usecase-green{
+    background: linear-gradient(360deg, rgba(158, 252, 64, 0.68) 0%, rgba(217, 217, 217, 0.00) 100%);
+    mix-blend-mode: hard-light;
+  }
+
+  .usecase-blue{
+    background: linear-gradient(359deg, #57CCD3 31.77%, rgba(217, 217, 217, 0.00) 100%);
+    mix-blend-mode: hard-light;
+  }
+
+  .usecase-purple{
+    background: linear-gradient(359deg, #CC60FF 0.01%, rgba(217, 217, 217, 0.00) 100%);
+    mix-blend-mode: hard-light;
+  }
+
+  .usecase-yellow{
+    background: linear-gradient(359deg, #FFEB33 0%, rgba(217, 217, 217, 0.00) 100%);
+    mix-blend-mode: hard-light;
+  }
+
 }

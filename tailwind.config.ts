@@ -15,7 +15,8 @@ const config: Config = {
       },
       fontFamily:{
         'inter':['Inter'],
-        'roboto':['Roboto']
+        'roboto':['Roboto'],
+        'gilroy':['Gilroy'],
       }
     },
   },

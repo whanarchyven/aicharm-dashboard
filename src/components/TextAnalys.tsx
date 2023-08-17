@@ -13,10 +13,10 @@ interface textAnalysInterface {
 const TextAnalys = ({messages}:textAnalysInterface) => {
     return (
         <InfoTab icon={'brain'} title={'Text analytics'}>
-            <div className={'h-full py-4 justify-end flex flex-col gap-3 items-end'}>
+            <div className={'h-full py-4 justify-end flex  flex-col gap-3 items-end'}>
                 {messages.map((item,counter)=>{
                     return(
-                        <div key={counter} className={'bg-[#415165] gap-0 rounded-lg grid items-start p-3 grid-cols-12 w-full'}>
+                        <div key={counter} className={'bg-[#A34EDF] bg-opacity-20 gap-0 rounded-lg grid items-start p-3 grid-cols-12 w-full'}>
                             <div className={classList('col-span-1 flex justify-center',counter==messages.length-1?'opacity-100':'opacity-10')}>
                                 <img className={'w-8'} src={`/emotions/${item.emotion}.png`}/>
                             </div>
