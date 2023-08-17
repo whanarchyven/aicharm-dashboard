@@ -207,7 +207,7 @@ export default function Home() {
                         <Typewriter options={{
                             strings: [`"Let projects focus on their core function and algorithm improvements, <br/> while we take care of quality communication with the users."`],
                             autoStart: true,
-                            loop: false,
+                            loop: true,
                             delay: 30,
                         }}/>
                         {/*<p className={'font-roboto text-white text-4xl font-normal text-center'}></p>*/}
