@@ -278,7 +278,7 @@ export default function Home() {
                                 <div
                                     className={'rounded-xl overflow-hidden white-grad aspect-square col-span-2 relative w-full'}>
                                     <div className={'absolute left-0 top-0 w-full h-full'}>
-                                        <Emotions activeEmotionId={2}></Emotions>
+                                        {/*<Emotions activeEmotionId={2}></Emotions>*/}
                                     </div>
                                 </div>
                                 <div
@@ -296,7 +296,7 @@ export default function Home() {
                                 <div
                                     className={'rounded-xl overflow-hidden white-grad col-span-4 row-span-3 relative w-full'}>
                                     <div className={'absolute left-0 top-0 w-full h-full'}>
-                                        <TextAnalys messages={messages}></TextAnalys>
+                                        {/*<TextAnalys messages={messages}></TextAnalys>*/}
                                     </div>
                                 </div>
                                 <div
@@ -304,7 +304,7 @@ export default function Home() {
                                     <div className={'absolute left-0 top-0 w-full h-full'}>
                                         <div className={'grid grid-cols-1'}>
                                             <FaceVideo></FaceVideo>
-                                            <FaceEmotions activeEmotionId={5}></FaceEmotions>
+                                            {/*<FaceEmotions activeEmotionId={5}></FaceEmotions>*/}
                                         </div>
                                     </div>
                                 </div>

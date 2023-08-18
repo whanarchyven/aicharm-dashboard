@@ -8,7 +8,7 @@ import FaceVideo from "@/components/FaceVideo";
 import FaceEmotions from "@/components/FaceEmotions";
 import BrainAnalytics from "@/components/BrainAnalytics";
 import TextAnalys from "@/components/TextAnalys";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 export default function Home() {
 
@@ -46,16 +46,48 @@ export default function Home() {
             time:'07:30',
             emotion:1,
             text:'Привет! Меня зовут Максим.'
+        },
+        {
+            time:'07:30',
+            emotion:1,
+            text:'Привет! Меня зовут Максим.'
+        },
+        {
+            time:'07:30',
+            emotion:1,
+            text:'Привет! Меня зовут Максим.'
+        },
+        {
+            time:'07:30',
+            emotion:1,
+            text:'Привет! Меня зовут Максим.'
+        },
+        {
+            time:'07:30',
+            emotion:1,
+            text:'Привет! Меня зовут Максим.'
+        },
+        {
+            time:'07:30',
+            emotion:1,
+            text:'Привет! Меня зовут Максим.'
         }
     ]
+
+    const [emotions,setEmotions]=useState()
+
+
 
     useEffect(()=>{
         window.onmessage = function(e) {
             if (e.data[0] == 'videoEmotion') {
                 console.log(e.data[1])
+                setEmotions(e.data[1])
             }
         };
-    },[])
+    },)
+
+
 
     return (
         <main className="flex min-h-screen bg-grad flex-col gap-4 py-3 px-24">
@@ -75,7 +107,7 @@ export default function Home() {
 
                     </div>
                     <div className={'absolute left-0 top-0 w-full h-full'}>
-                        <Emotions activeEmotionId={2}></Emotions>
+                        <Emotions emotions={emotions}></Emotions>
                     </div>
                 </div>
                 <div className={'rounded-xl overflow-hidden aspect-square col-span-2 relative w-full'}>
@@ -98,8 +130,8 @@ export default function Home() {
                     <div className={'absolute left-0 top-0 bg-opacity-25 bg-blue-600 mix-blend-multiply w-full h-full z-[0]'}>
 
                     </div>
-                    <div className={'absolute left-0 top-0 w-full h-full'}>
-                        <TextAnalys messages={messages}></TextAnalys>
+                    <div className={'absolute left-0 z-[20] top-0 w-full h-full'}>
+                        <TextAnalys emotionalContext={emotions}></TextAnalys>
                     </div>
                 </div>
                 <div className={'rounded-xl overflow-hidden row-span-2 col-span-2 relative w-full'}>
@@ -109,7 +141,7 @@ export default function Home() {
                     <div className={'absolute left-0 top-0 w-full h-full'}>
                         <div className={'grid grid-cols-1'}>
                             <FaceVideo></FaceVideo>
-                            <FaceEmotions activeEmotionId={5}></FaceEmotions>
+                            <FaceEmotions emotions={emotions}></FaceEmotions>
                         </div>
                     </div>
                 </div>
@@ -125,7 +157,7 @@ export default function Home() {
                     <div className={'absolute left-0 top-0 bg-opacity-25 bg-blue-600 mix-blend-multiply w-full h-full z-[0]'}>
 
                     </div>
-                    <div className={'absolute left-0 top-0 w-full h-full'}>
+                    <div className={'absolute left-0 top-0 z-[20] w-full h-full'}>
                         <BrainAnalytics></BrainAnalytics>
                     </div>
                 </div>

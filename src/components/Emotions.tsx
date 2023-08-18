@@ -1,14 +1,42 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import InfoTab from "@/components/InfoTab";
 import {classList} from "@/helpers/classList";
 
 interface EmotionsInterface {
-    activeEmotionId?:number
+    emotions:any,
 }
 
-const Emotions = ({activeEmotionId}:EmotionsInterface) => {
+const Emotions = ({emotions}:EmotionsInterface) => {
 
-    const emotions=[
+    const [activeEmotion,setActiveEmotion]=useState(0)
+    useEffect(()=>{
+        let max=0;
+        let max_index=0;
+        if(emotions?.current){
+            emotions?.current.map((item:any,counter:number)=>{
+                if(item.percent>max){
+                    max=item.percent;
+                    max_index=counter;
+                }
+            })
+            let temp_emotion=emotions?.current[max_index].expression;
+
+            switch (temp_emotion) {
+                case 'neutral':setActiveEmotion(1);break;
+                case 'happy':setActiveEmotion(2);break;
+                case 'sad':setActiveEmotion(7);break;
+                case 'angry':setActiveEmotion(18);break;
+                case 'fearful':setActiveEmotion(10);break;
+                case 'disgusted':setActiveEmotion(8);break;
+                case 'surprised':setActiveEmotion(16);break;
+            }
+
+            console.log(temp_emotion)
+        }
+
+    },[emotions])
+
+    const emotionsData=[
         {
             id:1,
             image:'/emotions/1.png'
@@ -94,13 +122,13 @@ const Emotions = ({activeEmotionId}:EmotionsInterface) => {
     return (
         <InfoTab icon={'emotions'} title={'Average emotion'}>
             <div className={'grid grid-cols-5 gap-3'}>
-                {emotions.map((item)=>{
+                {emotionsData.map((item)=>{
                     return(
                         <div key={item.id} className={'w-full relative flex items-center justify-center aspect-square'}>
-                            <div className={classList('transition-all duration-300 absolute w-full z-[0] h-full rounded-full bg-blue-600',activeEmotionId==item.id?'animate-ping':'opacity-0')}>
+                            <div className={classList('transition-all duration-300 absolute w-full z-[0] h-full rounded-full bg-blue-600',activeEmotion==item.id?'animate-ping':'opacity-0')}>
 
                             </div>
-                            <img src={item.image} className={classList('transition-all duration-300 absolute w-full h-full',activeEmotionId==item.id?'opacity-100':'opacity-10')}/>
+                            <img src={item.image} className={classList('transition-all duration-300 absolute w-full h-full',activeEmotion==item.id?'opacity-100':'opacity-10')}/>
                         </div>
                     )
                 })}
