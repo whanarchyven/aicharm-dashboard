@@ -1,10 +1,10 @@
 "use client"
-import {Swiper, SwiperSlide} from 'swiper/react';
+import {Swiper, SwiperRef, SwiperSlide} from 'swiper/react';
 import {Pagination, Mousewheel} from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Typewriter from 'typewriter-effect';
-import React from "react";
+import React, {useCallback, useRef, useState} from "react";
 import Emotions from "@/components/Emotions";
 import Acceleration from "@/components/Acceleration";
 import HeartRate from "@/components/HeartRate";
@@ -13,6 +13,7 @@ import FaceVideo from "@/components/FaceVideo";
 import FaceEmotions from "@/components/FaceEmotions";
 import InfoTab from "@/components/InfoTab";
 import BrainAnalytics from "@/components/BrainAnalytics";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -89,10 +90,15 @@ export default function Home() {
         // },
     ]
 
+    const [showMore, setShowMore] = useState(false)
+
+    const swiperRef = useRef<any>(null)
+
 
     return (
         <main className="flex pitch-bg min-h-screen">
             <Swiper
+                ref={swiperRef}
                 className={'h-screen w-full'}
                 direction={'vertical'}
                 mousewheel={true}
@@ -177,7 +183,7 @@ export default function Home() {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
-                    <div className={'w-full h-full flex items-center px-24 justify-center'}>
+                    <div className={'w-full h-full flex flex-col items-center py-12 px-24 justify-center'}>
                         <div className={'grid w-full h-full gap-12 grid-cols-2 items-center'}>
                             <div className={'flex w-full relative h-full items-center justify-center'}>
                                 <div className={'relative flex w-full h-96 items-center justify-center'}>
@@ -185,7 +191,7 @@ export default function Home() {
                                     <img className={'absolute w-4/5 h-4/5'} src={'/pitch/ai_track.svg'}/>
                                 </div>
                             </div>
-                            <div className={'flex items-start flex-col gap-5'}>
+                            <div className={'flex items-start flex-col gap-12'}>
                                 <p className={'font-roboto text-5xl text-white font-black'}>Trends</p>
                                 <p className={'text-white font-inter font-light text-xl'}>The convergence of AI, Crypto,
                                     Games, Virtual Worlds, and Digitalisation is driving a technological revolution,
@@ -193,24 +199,89 @@ export default function Home() {
                                     <br/><br/>
                                     This trend is anticipated to continue, unlocking new possibilities and efficiencies,
                                     thus reshaping our future with promising prospects and opportunities.</p>
-                                <div
-                                    className={'text-white font-inter font-normal text-lg flex items-center bg-[#D630FF] w-60 rounded-lg h-16 justify-center'}>
+                                {!showMore ? <div onClick={() => {
+                                    setShowMore(true)
+                                }}
+                                                  className={'text-white cursor-pointer font-inter font-normal text-lg flex items-center bg-[#D630FF] w-60 rounded-lg h-16 justify-center'}>
                                     Discover More
+                                </div> : null}
+                            </div>
+
+                        </div>
+
+                        {showMore ? <div className={'grid w-full h-full gap-12 grid-cols-2 items-center'}>
+                            <div className={'row-span-1 w-full flex justify-center h-full col-span-1'}>
+                                <div className={'w-fit h-full relative'}>
+                                    <img className={'w-full h-full'} src={'/pitch/crypto_grid.svg'}/>
+                                    <img className={'w-full top-0 p-10 absolute h-full'}
+                                         src={'/pitch/crypto_path.svg'}/>
                                 </div>
                             </div>
-                        </div>
+                            <div className={'row-span-1 w-full flex justify-center h-full col-span-1'}>
+                                <div className={'w-fit h-full relative'}>
+                                    <img className={'w-full h-full'} src={'/pitch/crypto_grid.svg'}/>
+                                    <img className={'w-full top-0 p-10 absolute h-full'}
+                                         src={'/pitch/crypto_path.svg'}/>
+                                </div>
+                            </div>
+                        </div> : null}
+
+
                     </div>
                 </SwiperSlide>
+
+                {showMore ? <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
+                    <div className={'w-full h-full flex flex-col items-center py-12 px-24 justify-center'}>
+                        <div className={'grid w-full h-full gap-12 grid-cols-2 grid-rows-2 items-center'}>
+                            <div className={'flex w-full p-9 relative h-full flex-col items-center justify-center'}>
+                                <p className={'font-inter text-white font-light text-xl'}><span
+                                    className={'font-bold text-[#D630FF]'}>The interaction between computers and humans
+                                    is becoming more intimate,</span> with a daily emergence of new AI projects or games
+                                    designed to engage directly with individuals.
+
+                                    A significant portion of these innovations is aimed at the consumer market,
+                                    reflecting a trend towards more personalized and human-centered technology.
+
+                                    The focus on building connections between technology and people is reshaping how we
+                                    interact, work, and entertain.</p>
+                            </div>
+                            <div
+                                className={'flex items-center relative justify-center p-7 white-grad w-full rounded-lg h-full flex-col gap-3'}>
+                                <p className={'font-gilroy font-extrabold text-8xl'}>10+</p>
+                                <p className={'font-roboto font-light text-2xl text-center'}>new AI projects or
+                                    games <br/>
+                                    are being launched everyday.</p>
+                                <img className={'absolute -left-32 -bottom-32'} src={'/pitch/trends_arrow1.svg'}/>
+                                <img className={'absolute -right-4 -bottom-32'} src={'/pitch/trends_arrow2.svg'}/>
+                            </div>
+                            <div
+                                className={'flex items-center justify-center p-7 white-grad w-full rounded-lg h-full flex-col gap-3'}>
+                                <p className={'font-gilroy font-extrabold text-8xl'}>47%</p>
+                                <p className={'font-roboto font-light text-2xl text-center'}>of them are
+                                    targeting <br/> the B2C audience.</p>
+                            </div>
+                            <div
+                                className={'flex items-center justify-center p-7 white-grad w-full rounded-lg h-full flex-col gap-3'}>
+                                <p className={'font-gilroy font-extrabold text-8xl'}>100%</p>
+                                <p className={'font-roboto font-light text-2xl text-center'}>of them
+                                    ultimately <br/> work with people.</p>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </SwiperSlide> : null}
+
                 <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
                     <div
                         className={'w-full h-full font-roboto text-white text-4xl font-normal text-center flex flex-col items-center px-24 justify-center bg-cover bg-[url("/pitch/sprite_bg.png")]'}>
-                        <Typewriter options={{
-                            strings: [`"Let projects focus on their core function and algorithm improvements, <br/> while we take care of quality communication with the users."`],
-                            autoStart: true,
-                            loop: true,
-                            delay: 30,
-                        }}/>
-                        {/*<p className={'font-roboto text-white text-4xl font-normal text-center'}></p>*/}
+
+                        <p className={'font-roboto text-white text-4xl font-normal text-center'}>`&quot;`Let projects
+                            focus on
+                            their core function and algorithm improvements, <br/> while we take care of quality
+                            communication with the users.`&quot;`</p>
                         <div className={'border-b-[1px] h-[50px] border-white w-1/5'}>
 
                         </div>
@@ -221,39 +292,63 @@ export default function Home() {
                         <img className={'w-80'} src={'/pitch/big_logo.svg'}/>
                         <p className={'text-center text-white text-3xl font-black'}>Eq4AI</p>
                         <div className={'grid w-full grid-cols-2 grid-rows-3 gap-8'}>
-                            <div
-                                className={'h-28 p-6 px-12 gap-10 white-grad hover:white-grad-active cursor-pointer duration-1000 transition-all bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
+                            <div onClick={() => {
+                                if (swiperRef.current&&"swiper" in swiperRef.current) {
+                                    swiperRef.current.swiper.slideTo(7);
+                                }
+                            }}
+                                 className={'h-28 p-6 px-12 gap-10 white-grad hover:white-grad-active cursor-pointer duration-1000 transition-all bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
                                 <img className={'w-16 aspect-square'} src={'/pitch/myers.svg'}/>
                                 <p className={'text-white font-roboto font-light text-2xl'}>Character analysis by <br/>
                                     Myers-Briggs. Database Features</p>
                             </div>
-                            <div
-                                className={'h-28 p-6 px-12 gap-10 hover:white-grad-active cursor-pointer white-grad bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
+                            <div onClick={() => {
+                                if (swiperRef.current&&"swiper" in swiperRef.current) {
+                                    swiperRef.current.swiper.slideTo(10);
+                                }
+                            }}
+                                 className={'h-28 p-6 px-12 gap-10 hover:white-grad-active cursor-pointer white-grad bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
                                 <img className={'w-16 aspect-square'} src={'/pitch/text.svg'}/>
                                 <p className={'text-white font-roboto font-light text-2xl'}>Text analysis and
                                     categorization <br/> based on emotions</p>
                             </div>
-                            <div
-                                className={'h-28 p-6 px-12 gap-10 hover:white-grad-active cursor-pointer white-grad bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
+                            <div onClick={() => {
+                                if (swiperRef.current&&"swiper" in swiperRef.current) {
+                                    swiperRef.current.swiper.slideTo(11);
+                                }
+                            }}
+                                 className={'h-28 p-6 px-12 gap-10 hover:white-grad-active cursor-pointer white-grad bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
                                 <img className={'w-16 aspect-square'} src={'/pitch/audio.svg'}/>
                                 <p className={'text-white font-roboto font-light text-2xl'}>Generative audio,
                                     adaptable to <br/> voice with emotional tone</p>
                             </div>
-                            <div
-                                className={'h-28 p-6 px-12 gap-10 hover:white-grad-active cursor-pointer white-grad bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
+                            <div onClick={() => {
+                                if (swiperRef.current&&"swiper" in swiperRef.current) {
+                                    swiperRef.current.swiper.slideTo(9);
+                                }
+                            }}
+                                 className={'h-28 p-6 px-12 gap-10 hover:white-grad-active cursor-pointer white-grad bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
                                 <img className={'w-16 aspect-square'} src={'/pitch/face.svg'}/>
                                 <p className={'text-white font-roboto font-light text-2xl'}>Visual module for
                                     facial <br/>
                                     expressions and movements</p>
                             </div>
-                            <div
-                                className={'h-28 p-6 px-12 gap-10 hover:white-grad-active cursor-pointer white-grad bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
+                            <div onClick={() => {
+                                if (swiperRef.current&&"swiper" in swiperRef.current) {
+                                    swiperRef.current.swiper.slideTo(11);
+                                }
+                            }}
+                                 className={'h-28 p-6 px-12 gap-10 hover:white-grad-active cursor-pointer white-grad bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
                                 <img className={'w-16 aspect-square'} src={'/pitch/brain.svg'}/>
                                 <p className={'text-white font-roboto font-light text-2xl'}>Analysis of brain
                                     activity</p>
                             </div>
-                            <div
-                                className={'h-28 p-6 px-12 gap-10 hover:white-grad-active cursor-pointer white-grad bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
+                            <div onClick={() => {
+                                if (swiperRef.current&&"swiper" in swiperRef.current) {
+                                    swiperRef.current.swiper.slideTo(12);
+                                }
+                            }}
+                                 className={'h-28 p-6 px-12 gap-10 hover:white-grad-active cursor-pointer white-grad bg-white bg-opacity-10 flex items-center rounded-xl shadow-inner backdrop-blur-lg'}>
                                 <img className={'w-16 aspect-square'} src={'/pitch/time.svg'}/>
                                 <p className={'text-white font-roboto font-light text-2xl'}>Wearable device
                                     analysis <br/> (such as smartwatches)</p>
@@ -265,63 +360,14 @@ export default function Home() {
                 </SwiperSlide>
 
                 <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
-                    <div className={'w-full h-full flex flex-col gap-8 items-center justify-center'}>
-                        <div className="flex min-h-screen w-full flex-col gap-4 py-3 px-24">
-                            <div className={'flex items-center justify-between'}>
-                                <img className={'w-40'} src={'/logo.svg'}/>
-                                <p className={'font-inter font-extralight text-xl'}>00:07:45</p>
+                    <div className={'w-full h-full px-24 py-12 flex flex-col gap-8 items-center justify-center'}>
+                        <img className={'w-[80%]'} src={'/dashboard.svg'}/>
+                        <Link href={'/'}>
+                            <div
+                                className={'text-white font-inter font-bold text-xl flex items-center bg-[#D630FF] w-60 rounded-lg h-16 justify-center'}>
+                                Test
                             </div>
-                            <div className={'grid grid-rows-3 grid-cols-12 gap-4'}>
-                                <div className={'rounded-xl overflow-hidden aspect-square col-span-2 relative w-full'}>
-                                    <img className={'w-full absolute h-full object-cover'} src={'/max.png'}/>
-                                </div>
-                                <div
-                                    className={'rounded-xl overflow-hidden white-grad aspect-square col-span-2 relative w-full'}>
-                                    <div className={'absolute left-0 top-0 w-full h-full'}>
-                                        {/*<Emotions activeEmotionId={2}></Emotions>*/}
-                                    </div>
-                                </div>
-                                <div
-                                    className={'rounded-xl overflow-hidden white-grad aspect-square col-span-2 relative w-full'}>
-                                    <div className={'absolute left-0 top-0 w-full h-full'}>
-                                        <Acceleration accelerationLevel={80}></Acceleration>
-                                    </div>
-                                </div>
-                                <div
-                                    className={'rounded-xl overflow-hidden white-grad aspect-square col-span-2 relative w-full'}>
-                                    <div className={'absolute left-0 top-0 w-full h-full'}>
-                                        <HeartRate heartRateLevel={76}></HeartRate>
-                                    </div>
-                                </div>
-                                <div
-                                    className={'rounded-xl overflow-hidden white-grad col-span-4 row-span-3 relative w-full'}>
-                                    <div className={'absolute left-0 top-0 w-full h-full'}>
-                                        {/*<TextAnalys messages={messages}></TextAnalys>*/}
-                                    </div>
-                                </div>
-                                <div
-                                    className={'rounded-xl overflow-hidden white-grad row-span-2 col-span-2 relative w-full'}>
-                                    <div className={'absolute left-0 top-0 w-full h-full'}>
-                                        <div className={'grid grid-cols-1'}>
-                                            <FaceVideo></FaceVideo>
-                                            {/*<FaceEmotions activeEmotionId={5}></FaceEmotions>*/}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className={'rounded-xl overflow-hidden white-grad col-span-6 relative w-full'}>
-                                    <div className={'absolute left-0 top-0 w-full h-full'}>
-                                        <InfoTab icon={'mic'} title={'Audio analytics'}>
-                                            <img src={'/audio_temp.svg'}/>
-                                        </InfoTab>
-                                    </div>
-                                </div>
-                                <div className={'rounded-xl overflow-hidden white-grad col-span-6 relative w-full'}>
-                                    <div className={'absolute left-0 top-0 w-full h-full'}>
-                                        <BrainAnalytics></BrainAnalytics>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </Link>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
@@ -569,101 +615,136 @@ export default function Home() {
                         </div>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
-                    <div className={'w-full h-full grid gap-6 grid-cols-2 px-36 items-center'}>
-                        <div className={'flex flex-col relative gap-4'}>
-                            <img className={'absolute -left-28 top-16'} src={'/pitch/arrow1.svg'}/>
-                            <img className={'absolute -left-32 top-20'} src={'/pitch/arrow2.svg'}/>
-                            <img className={'absolute -left-32 top-20'} src={'/pitch/arrow3.svg'}/>
+                <SwiperSlide className={'w-full py-12 h-screen flex items-center justify-center'}>
+                    <div className={'w-full h-full px-24 grid grid-cols-2 gap-12 grid-rows-1 items-center'}>
+
+                        <div className={'flex relative justify-center items-center h-full gap-4'}>
+                            <div className={'absolute left-0 w-2/5 backdrop-blur-xl'}>
+                                <img className={''} src={'/pitch/video_sprite1.png'}/>
+                            </div>
                             <div
-                                className={'bg-[#A34EDF] mb-12 gap-3 left-4 p-4 bg-opacity-20 flex items-start rounded-xl w-4/6'}>
-                                <div className={''}>
-                                    <img src={'/pitch/max.png'}/>
-                                </div>
-                                <div className={'flex w-[90%] flex-col gap-2'}>
-                                    <p className={'text-white text-sm font-bold'}>Max</p>
-                                    <p className={'text-white text-sm font-light font-roboto'}>
-                                        I am trying to figure out the tasks for the project, but everything is
-                                        getting mixed up in my head, and I dont know what to do. What should I do?
-                                    </p>
-                                </div>
-                                <p className={'text-xs font-light opacity-50'}>7:30</p>
+                                className={'absolute  bottom-20 bg-[#32323E] rounded-xl right-48 w-2/5 backdrop-blur-xl'}>
+                                <img className={''} src={'/pitch/video_sprite2.png'}/>
                             </div>
-                            <div className={'flex font-roboto font-light gap-1 items-start'}>
-                                <div className={'flex flex-col gap-2 w-fit items-center'}>
-                                    <img className={'w-7'} src={'/emotions/13.png'}/>
-                                    <div
-                                        className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
-                                        I am trying
-                                    </div>
-                                </div>
-                                <div className={'flex flex-col gap-2 w-fit items-center'}>
-                                    <img className={'w-7'} src={'/emotions/15.png'}/>
-                                    <div
-                                        className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
-                                        <p>to <span className={'font-bold'}> figure out</span></p>
-                                    </div>
-                                </div>
-                                <div className={'flex flex-col gap-2 w-fit items-center'}>
-                                    <img className={'w-7'} src={'/emotions/13.png'}/>
-                                    <div
-                                        className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
-                                        <p><span className={'font-bold'}>the tasks</span> for the project,</p>
-                                    </div>
-                                </div>
-                                <div className={'flex flex-col gap-2 w-fit items-center'}>
-                                    <img className={'w-7'} src={'/emotions/13.png'}/>
-                                    <div
-                                        className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
-                                        <p>but</p>
-                                    </div>
-                                </div>
+                            <div
+                                className={'absolute  top-48 z-[10] right-0 bg-[#32323E] rounded-xl w-2/5 backdrop-blur-xl'}>
+                                <img className={''} src={'/pitch/video_sprite3.png'}/>
                             </div>
-                            <div className={'flex font-roboto font-light gap-1 items-start'}>
-                                <div className={'flex flex-col gap-2 w-fit items-center'}>
-                                    <img className={'w-7'} src={'/emotions/9.png'}/>
-                                    <div
-                                        className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
-                                        <p><span className={'font-bold'}>everything is getting mixed up </span>in my
-                                            head,</p>
-                                    </div>
-                                </div>
-                                <div className={'flex flex-col gap-2 w-fit items-center'}>
-                                    <img className={'w-7'} src={'/emotions/8.png'}/>
-                                    <div
-                                        className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
-                                        <p>and <span className={'font-bold'}>I dont know </span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={'flex font-roboto font-light gap-1 items-start'}>
-                                <div className={'flex flex-col gap-2 w-fit items-center'}>
-                                    <img className={'w-7'} src={'/emotions/8.png'}/>
-                                    <div
-                                        className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
-                                        <p><span className={'font-bold'}>what to do.</span></p>
-                                    </div>
-                                </div>
-                                <div className={'flex flex-col gap-2 w-fit items-center'}>
-                                    <img className={'w-7'} src={'/emotions/15.png'}/>
-                                    <div
-                                        className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
-                                        <p>What should I do?</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <img className={'absolute bottom-20 left-12'} src={'/pitch/video_arrow1.svg'}/>
+                            <img className={'absolute left-72 top-32 z-[0]'} src={'/pitch/video_arrow2.svg'}/>
                         </div>
+                        <div className={'flex flex-col gap-12'}>
+                            <p className={'text-5xl font-black font-roboto'}>Video and Emotion Analysis <br/>
+                                through Facial Movement</p>
+                            <p className={'font-inter text-xl font-light'}>We specialize in tracking human emotions
+                                based on facial expressions. Our proprietary algorithm works in conjunction with other
+                                tools to more accurately determine the speakers psychotype, capturing even the most
+                                subtle changes in facial expressions.</p>
+                        </div>
+                    </div>
+                </SwiperSlide>
+                <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
+                    <div className={'w-full h-full grid gap-12 grid-cols-2 px-36 items-center'}>
+
                         <div className={'flex flex-col gap-6'}>
                             <p className={'font-extrabold font-roboto text-6xl text-white'}>Text analysis </p>
                             <p className={'font-inter text-xl text-white'}>We analyze text using neural networks and our
                                 plugins, interpreting not only meanings and emotions but also phonemes and the emotional
                                 tone of the text.</p>
                         </div>
+                        <div className={'flex flex-col items-end relative gap-4'}>
+                            <div className={'flex flex-col relative w-5/6 gap-4'}>
+                                <img className={'absolute -left-28 top-16'} src={'/pitch/arrow1.svg'}/>
+                                <img className={'absolute -left-32 top-20'} src={'/pitch/arrow2.svg'}/>
+                                <img className={'absolute -left-32 top-20'} src={'/pitch/arrow3.svg'}/>
+                                <div
+                                    className={'bg-[#A34EDF] mb-12 gap-3 left-4 p-4 bg-opacity-20 flex items-start rounded-xl w-4/6'}>
+                                    <div className={''}>
+                                        <img src={'/pitch/max.png'}/>
+                                    </div>
+                                    <div className={'flex w-[90%] flex-col gap-2'}>
+                                        <p className={'text-white text-sm font-bold'}>Max</p>
+                                        <p className={'text-white text-sm font-light font-roboto'}>
+                                            I am trying to figure out the tasks for the project, but everything is
+                                            getting mixed up in my head, and I dont know what to do. What should I do?
+                                        </p>
+                                    </div>
+                                    <p className={'text-xs font-light opacity-50'}>7:30</p>
+                                </div>
+                                <div className={'flex font-roboto w-fit font-light gap-1 items-start'}>
+                                    <div className={'flex flex-col gap-2 w-fit items-center'}>
+                                        <img className={'w-7'} src={'/emotions/13.png'}/>
+                                        <div
+                                            className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
+                                            I am trying
+                                        </div>
+                                    </div>
+                                    <div className={'flex flex-col gap-2 w-fit items-center'}>
+                                        <img className={'w-7'} src={'/emotions/15.png'}/>
+                                        <div
+                                            className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
+                                            <p>to <span className={'font-bold'}> figure out</span></p>
+                                        </div>
+                                    </div>
+                                    <div className={'flex flex-col gap-2 w-fit items-center'}>
+                                        <img className={'w-7'} src={'/emotions/13.png'}/>
+                                        <div
+                                            className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
+                                            <p><span className={'font-bold'}>the tasks</span> for the project,</p>
+                                        </div>
+                                    </div>
+                                    <div className={'flex flex-col gap-2 w-fit items-center'}>
+                                        <img className={'w-7'} src={'/emotions/13.png'}/>
+                                        <div
+                                            className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
+                                            <p>but</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={'flex font-roboto w-fit font-light gap-1 items-start'}>
+                                    <div className={'flex flex-col gap-2 w-fit items-center'}>
+                                        <img className={'w-7'} src={'/emotions/9.png'}/>
+                                        <div
+                                            className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
+                                            <p><span className={'font-bold'}>everything is getting mixed up </span>in my
+                                                head,</p>
+                                        </div>
+                                    </div>
+                                    <div className={'flex flex-col gap-2 w-fit items-center'}>
+                                        <img className={'w-7'} src={'/emotions/8.png'}/>
+                                        <div
+                                            className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
+                                            <p>and <span className={'font-bold'}>I dont know </span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={'flex font-roboto w-fit font-light gap-1 items-start'}>
+                                    <div className={'flex flex-col gap-2 w-fit items-center'}>
+                                        <img className={'w-7'} src={'/emotions/8.png'}/>
+                                        <div
+                                            className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
+                                            <p><span className={'font-bold'}>what to do.</span></p>
+                                        </div>
+                                    </div>
+                                    <div className={'flex flex-col gap-2 w-fit items-center'}>
+                                        <img className={'w-7'} src={'/emotions/15.png'}/>
+                                        <div
+                                            className={'flex w-fit items-center rounded-lg justify-center white-grad px-1'}>
+                                            <p>What should I do?</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className={'w-full py-12 h-screen flex items-center justify-center'}>
                     <div className={'w-full h-full px-24 grid grid-cols-1 grid-rows-2 items-center'}>
                         <div className={'grid gap-20 items-center grid-cols-5'}>
+                            <div className={'flex col-span-3 flex-col gap-5'}>
+                                <img className={'w-5/6'} src={'/pitch/audio_temp.svg'}/>
+                            </div>
                             <div className={'flex flex-col col-span-2 gap-6'}>
                                 <p className={'font-extrabold font-roboto text-5xl text-white'}>Audio analysis</p>
                                 <p className={'font-inter text-xl text-white'}>Our audio analysis includes segmentation
@@ -672,15 +753,8 @@ export default function Home() {
                                     for
                                     a deeper understanding of human conditions.</p>
                             </div>
-                            <div className={'flex col-span-3 flex-col gap-5'}>
-                                <img className={'w-5/6'} src={'/pitch/audio_temp.svg'}/>
-                            </div>
                         </div>
                         <div className={'grid gap-20 items-center grid-cols-5'}>
-
-                            <div className={'flex col-span-3 flex-col gap-5'}>
-                                <img className={'w-5/6'} src={'/pitch/temp_brain.svg'}/>
-                            </div>
                             <div className={'flex flex-col col-span-2 gap-6'}>
                                 <p className={'font-extrabold font-roboto text-5xl text-white'}>Brain activity
                                     analysis</p>
@@ -689,21 +763,15 @@ export default function Home() {
                                     auditory, and textual activity, enhancing our ability to recognize their emotions
                                     and state.</p>
                             </div>
+                            <div className={'flex col-span-3 flex-col gap-5'}>
+                                <img className={'w-5/6'} src={'/pitch/temp_brain.svg'}/>
+                            </div>
                         </div>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide className={'w-full py-12 h-screen flex items-center justify-center'}>
                     <div className={'w-full h-full px-24 grid grid-cols-2 gap-12 grid-rows-1 items-center'}>
-                        <div className={'flex flex-col gap-12'}>
-                            <p className={'text-5xl font-black font-roboto'}>Wearable device analysis</p>
-                            <p className={'font-inter text-xl font-light'}>We also analyze hand movements, pressure, and
-                                other parameters from wearable devices,
-                                enhancing our ability to understand the humans condition.</p>
-                            <p className={'font-inter text-xl font-bold text-[#D630FF]'}>All this data collectively
-                                allows us to more efficiently train our models in
-                                understanding the full spectrum of human emotions, even in cases of limited information,
-                                such as text and audio only.</p>
-                        </div>
+
                         <div className={'flex items-center gap-4'}>
                             <img src={'/pitch/watch.png'}/>
                             <div
@@ -718,6 +786,16 @@ export default function Home() {
                                     <HeartRate heartRateLevel={76}></HeartRate>
                                 </div>
                             </div>
+                        </div>
+                        <div className={'flex flex-col gap-12'}>
+                            <p className={'text-5xl font-black font-roboto'}>Wearable device analysis</p>
+                            <p className={'font-inter text-xl font-light'}>We also analyze hand movements, pressure, and
+                                other parameters from wearable devices,
+                                enhancing our ability to understand the humans condition.</p>
+                            <p className={'font-inter text-xl font-bold text-[#D630FF]'}>All this data collectively
+                                allows us to more efficiently train our models in
+                                understanding the full spectrum of human emotions, even in cases of limited information,
+                                such as text and audio only.</p>
                         </div>
                     </div>
                 </SwiperSlide>
@@ -986,7 +1064,9 @@ export default function Home() {
                                     className={'w-full p-4 gap-5 white-grad rounded-lg flex flex-col items-start px-12'}>
                                     <div className={'flex items-center gap-8'}>
                                         <img className={'w-16 aspect-square'} src={'/pitch/content.svg'}/>
-                                        <p className={'font-roboto font-light text-xl'}>We launched a text-based online series with five different characters and are now developing a virtual environment for them</p>
+                                        <p className={'font-roboto font-light text-xl'}>We launched a text-based online
+                                            series with five different characters and are now developing a virtual
+                                            environment for them</p>
                                     </div>
                                 </div>
                             </div>
@@ -1003,7 +1083,8 @@ export default function Home() {
                         <img className={'w-3/5'} src={'/pitch/partners.svg'}/>
                     </div>
                 </SwiperSlide>
-                <SwiperSlide className={'w-full py-12 bg-[url("/pitch/tokenomic_bg.svg")] h-screen flex items-center justify-center'}>
+                <SwiperSlide
+                    className={'w-full py-12 bg-[url("/pitch/tokenomic_bg.svg")] h-screen flex items-center justify-center'}>
                     <div className={'w-full h-full flex flex-col px-24 justify-center items-center'}>
                         <div className={'grid grid-cols-2 items-start'}>
                             <div className={'flex flex-col gap-4'}>
@@ -1038,10 +1119,10 @@ export default function Home() {
                             <div className={'col-span-3 flex gap-8 flex-col'}>
                                 <p className={'font-black font-gilroy text-5xl'}>Maxim Gogolev</p>
                                 <div className={'flex flex-col gap-8'}>
-                                     <div className={'flex items-center gap-3'}>
-                                         <img className={'aspect-square w-10'} src={'/pitch/phone.png'}/>
-                                         <p className={'font-light text-2xl font-roboto'}>+90 507 985 49 28</p>
-                                     </div>
+                                    <div className={'flex items-center gap-3'}>
+                                        <img className={'aspect-square w-10'} src={'/pitch/phone.png'}/>
+                                        <p className={'font-light text-2xl font-roboto'}>+90 507 985 49 28</p>
+                                    </div>
                                     <div className={'flex items-center gap-3'}>
                                         <img className={'aspect-square w-10'} src={'/pitch/mail.png'}/>
                                         <p className={'font-light text-2xl font-roboto'}>mog@adsplatform.tech</p>
