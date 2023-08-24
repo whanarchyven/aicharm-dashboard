@@ -15,6 +15,7 @@ import InfoTab from "@/components/InfoTab";
 import BrainAnalytics from "@/components/BrainAnalytics";
 import Link from "next/link";
 import {useSearchParams} from "next/navigation";
+import axios from "axios";
 
 
 export default function Home() {
@@ -38,6 +39,14 @@ export default function Home() {
 
     const params = useSearchParams().get('speed');
 
+    const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
+    const [email, setEmail] = useState('')
+    const [company, setCompany] = useState('')
+    const [role, setRole] = useState('')
+
+    const [loadingStatus,setLoadingStatus]=useState('none')
+
 
     return (
         <main className="flex justify-center items-center pitch-bg min-h-screen">
@@ -50,6 +59,76 @@ export default function Home() {
                     modules={[Mousewheel]}
                     speed={params ? Number(params) : 1500}
                 >
+                    <SwiperSlide
+                        className={'w-full h-screen bg-cover bg-[url("/form_bg.png")] flex items-center justify-center'}>
+                        <div className={'w-full h-full grid grid-cols-2 gap-32  items-center justify-center px-24'}>
+                            <div
+                                className={'flex flex-col gap-6 items-center w-full backdrop-blur-xl p-8 bg-white bg-opacity-20 rounded-lg'}>
+                                <input value={name} onChange={(event) => {
+                                    setName(event.target.value)
+                                }} placeholder={'Your name'}
+                                       className={'w-full text-white placeholder:text-white placeholder:opacity-50 outline-none p-3 bg-white bg-opacity-20 rounded-lg'}/>
+                                <input value={phone} onChange={(event) => {
+                                    setPhone(event.target.value)
+                                }} placeholder={'Email'}
+                                       className={'w-full text-white placeholder:text-white placeholder:opacity-50 outline-none p-3 bg-white bg-opacity-20 rounded-lg'}/>
+                                <input value={email} onChange={(event) => {
+                                    setEmail(event.target.value)
+                                }} placeholder={'Phone number'}
+                                       className={'w-full text-white placeholder:text-white placeholder:opacity-50 outline-none p-3 bg-white bg-opacity-20 rounded-lg'}/>
+                                <input value={company} onChange={(event) => {
+                                    setCompany(event.target.value)
+                                }} placeholder={'Company name'}
+                                       className={'w-full text-white placeholder:text-white placeholder:opacity-50 outline-none p-3 bg-white bg-opacity-20 rounded-lg'}/>
+                                <input value={role} onChange={(event) => {
+                                    setRole(event.target.value)
+                                }} placeholder={'Role'}
+                                       className={'w-full text-white placeholder:text-white placeholder:opacity-50 outline-none p-3 bg-white bg-opacity-20 rounded-lg'}/>
+                                <div onClick={() => {
+                                    setLoadingStatus('pendind');
+                                    axios.post(`https://script.google.com/macros/s/AKfycbzIyhYXCIRfJFe_HJaN9CiLH3HBXX-UC_AUXysZPsm0HycDOGp0DtAypGStjpp2HIqC1g/exec?p1=${name}&p2=${email}&p3=${phone}&p4=${company}&p5=${role}`, {}, {
+                                        headers: {
+                                            'Content-Type': 'text/plain;charset=utf-8',
+                                        },
+                                    }).then((res) => {
+                                        setLoadingStatus('sended');
+                                    })
+                                }}
+                                     className={'text-white cursor-pointer font-inter shadow-xl font-normal text-xl flex items-center bg-[#D630FF] w-60 rounded-lg h-16 justify-center'}>
+                                    {loadingStatus=='none'?'Test Beta':null}
+                                    {loadingStatus=='pendind'?<img className={'w-9 aspect-square animate-spin'} src={'/loading.svg'}/>:null}
+                                    {loadingStatus=='sended'?'Successfully sended!':null}
+                                </div>
+                            </div>
+                            <div className={'flex items-start flex-col gap-9'}>
+                                <img
+
+
+                                    className={'w-96'} src={'/pitch/logo.svg'}/>
+                                <div
+
+
+                                    className={'bg-white text-black font-inter text-2xl rounded-lg items-center p-4 px-6 w-full flex justify-between'}>
+                                    <Typewriter options={{
+                                        strings: ['Characters with AI, EI, and personality ', 'Characters with AI, EI, and personality '],
+                                        autoStart: true,
+                                        loop: true,
+                                        delay: 50,
+                                    }}/>
+                                    <img className={'w-10 aspect-aquare'} src={'/pitch/send_message.svg'}/>
+                                </div>
+                                <p
+
+
+                                    className={'text-white font-inter text-xl w-4/5 font-light'}>We create software that
+                                    allows for the creation and integration of more human-like and empathetic virtual
+                                    assistants into products, complete with their own personalities and traits, as well
+                                    as their own knowledge.
+                                </p>
+
+                            </div>
+                        </div>
+                    </SwiperSlide>
                     <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
                         <div className={'w-full h-full flex items-center justify-center px-24'}>
                             <div className={'flex flex-col gap-8 items-center'}>
