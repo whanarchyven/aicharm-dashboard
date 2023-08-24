@@ -129,75 +129,75 @@ export default function Home() {
                             </div>
                         </div>
                     </SwiperSlide>
-                    <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
-                        <div className={'w-full h-full flex items-center justify-center px-24'}>
-                            <div className={'flex flex-col gap-8 items-center'}>
-                                <p
+                    {/*<SwiperSlide className={'w-full h-screen flex items-center justify-center'}>*/}
+                    {/*    <div className={'w-full h-full flex items-center justify-center px-24'}>*/}
+                    {/*        <div className={'flex flex-col gap-8 items-center'}>*/}
+                    {/*            <p*/}
 
 
-                                    className={'font-black tracking-[1.3rem] text-white uppercase text-7xl'}>FUTURE
-                                </p>
-                                <div className={'flex w-full gap-4 justify-between items-center'}>
-                                    <div
+                    {/*                className={'font-black tracking-[1.3rem] text-white uppercase text-7xl'}>FUTURE*/}
+                    {/*            </p>*/}
+                    {/*            <div className={'flex w-full gap-4 justify-between items-center'}>*/}
+                    {/*                <div*/}
 
 
-                                        className={'rounded-xl overflow-hidden'}>
-                                        <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}
-                                             src={'/pitch/future1.png'}/>
-                                    </div>
-                                    <div
+                    {/*                    className={'rounded-xl overflow-hidden'}>*/}
+                    {/*                    <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}*/}
+                    {/*                         src={'/pitch/future1.png'}/>*/}
+                    {/*                </div>*/}
+                    {/*                <div*/}
 
 
-                                        className={'rounded-xl overflow-hidden'}>
-                                        <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}
-                                             src={'/pitch/future2.png'}/>
-                                    </div>
-                                    <div
+                    {/*                    className={'rounded-xl overflow-hidden'}>*/}
+                    {/*                    <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}*/}
+                    {/*                         src={'/pitch/future2.png'}/>*/}
+                    {/*                </div>*/}
+                    {/*                <div*/}
 
 
-                                        className={'rounded-xl overflow-hidden'}>
-                                        <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}
-                                             src={'/pitch/future3.png'}/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
-                        <div className={'w-full h-full flex items-center justify-center px-24'}>
-                            <div className={'flex flex-col gap-8 items-center'}>
-                                <p
+                    {/*                    className={'rounded-xl overflow-hidden'}>*/}
+                    {/*                    <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}*/}
+                    {/*                         src={'/pitch/future3.png'}/>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</SwiperSlide>*/}
+                    {/*<SwiperSlide className={'w-full h-screen flex items-center justify-center'}>*/}
+                    {/*    <div className={'w-full h-full flex items-center justify-center px-24'}>*/}
+                    {/*        <div className={'flex flex-col gap-8 items-center'}>*/}
+                    {/*            <p*/}
 
 
-                                    className={'font-black text-white text-center text-6xl'}>Holograms & <br/>
-                                    Digital assistants
-                                </p>
-                                <div className={'flex w-full gap-4 justify-between items-center'}>
-                                    <div
+                    {/*                className={'font-black text-white text-center text-6xl'}>Holograms & <br/>*/}
+                    {/*                Digital assistants*/}
+                    {/*            </p>*/}
+                    {/*            <div className={'flex w-full gap-4 justify-between items-center'}>*/}
+                    {/*                <div*/}
 
 
-                                        className={'rounded-xl overflow-hidden'}>
-                                        <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}
-                                             src={'/pitch/future4.png'}/>
-                                    </div>
-                                    <div
+                    {/*                    className={'rounded-xl overflow-hidden'}>*/}
+                    {/*                    <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}*/}
+                    {/*                         src={'/pitch/future4.png'}/>*/}
+                    {/*                </div>*/}
+                    {/*                <div*/}
 
 
-                                        className={'rounded-xl overflow-hidden'}>
-                                        <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}
-                                             src={'/pitch/future5.png'}/>
-                                    </div>
-                                    <div
+                    {/*                    className={'rounded-xl overflow-hidden'}>*/}
+                    {/*                    <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}*/}
+                    {/*                         src={'/pitch/future5.png'}/>*/}
+                    {/*                </div>*/}
+                    {/*                <div*/}
 
 
-                                        className={'rounded-xl overflow-hidden'}>
-                                        <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}
-                                             src={'/pitch/future6.png'}/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SwiperSlide>
+                    {/*                    className={'rounded-xl overflow-hidden'}>*/}
+                    {/*                    <img className={'hover:scale-125 duration-300 transition-all cursor-pointer'}*/}
+                    {/*                         src={'/pitch/future6.png'}/>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</SwiperSlide>*/}
                     <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
                         <div
                             className={'w-full h-full flex items-center px-24 justify-center bg-cover bg-[url("/pitch/aicharm_bg.png")]'}>
@@ -1680,47 +1680,47 @@ export default function Home() {
                                 src={'/pitch/partners.svg'}/>
                         </div>
                     </SwiperSlide>
-                    <SwiperSlide
-                        className={'w-full py-12 bg-[url("/pitch/tokenomic_bg.svg")] h-screen flex items-center justify-center'}>
-                        <div className={'w-full h-full flex flex-col px-24 justify-center items-center'}>
-                            <div className={'grid grid-cols-2 items-start'}>
-                                <div className={'flex flex-col gap-4'}>
-                                    <p
+                    {/*<SwiperSlide*/}
+                    {/*    className={'w-full py-12 bg-[url("/pitch/tokenomic_bg.svg")] h-screen flex items-center justify-center'}>*/}
+                    {/*    <div className={'w-full h-full flex flex-col px-24 justify-center items-center'}>*/}
+                    {/*        <div className={'grid grid-cols-2 items-start'}>*/}
+                    {/*            <div className={'flex flex-col gap-4'}>*/}
+                    {/*                <p*/}
 
 
-                                        className={'font-roboto text-4xl font-black'}>Our Ask & Use of Funds
-                                    </p>
-                                    <div
+                    {/*                    className={'font-roboto text-4xl font-black'}>Our Ask & Use of Funds*/}
+                    {/*                </p>*/}
+                    {/*                <div*/}
 
 
-                                        className={'w-3/4 h-24 p-3 flex overflow-hidden items-center gap-6 justify-center row-span-1 rounded-lg relative h-full white-grad'}>
-                                        <div
-                                            className={'w-full h-[85%] opacity-60 absolute bottom-0 left-0 usecase-purple'}>
+                    {/*                    className={'w-3/4 h-24 p-3 flex overflow-hidden items-center gap-6 justify-center row-span-1 rounded-lg relative h-full white-grad'}>*/}
+                    {/*                    <div*/}
+                    {/*                        className={'w-full h-[85%] opacity-60 absolute bottom-0 left-0 usecase-purple'}>*/}
 
-                                        </div>
-                                        <p className={'font-gilroy font-extrabold text-5xl'}>500,000$</p>
-                                        <p className={'font-roboto text-lg font-light leading-[105%]'}>The amount <br/>
-                                            we ask for</p>
-                                    </div>
-                                    <div
-
-
-                                        className={'w-3/4 h-24 p-3 flex items-center gap-6 justify-center row-span-1 rounded-lg h-full white-grad'}>
-                                        <p className={'font-gilroy font-extrabold text-5xl'}>10$ MLN</p>
-                                        <p className={'font-roboto text-lg font-light leading-[105%]'}>Valuation</p>
-                                    </div>
-
-                                </div>
-                                <div className={'w-full'}>
-                                    <img
+                    {/*                    </div>*/}
+                    {/*                    <p className={'font-gilroy font-extrabold text-5xl'}>500,000$</p>*/}
+                    {/*                    <p className={'font-roboto text-lg font-light leading-[105%]'}>The amount <br/>*/}
+                    {/*                        we ask for</p>*/}
+                    {/*                </div>*/}
+                    {/*                <div*/}
 
 
-                                        src={'/pitch/tokenomic.svg'}/>
-                                </div>
-                            </div>
+                    {/*                    className={'w-3/4 h-24 p-3 flex items-center gap-6 justify-center row-span-1 rounded-lg h-full white-grad'}>*/}
+                    {/*                    <p className={'font-gilroy font-extrabold text-5xl'}>10$ MLN</p>*/}
+                    {/*                    <p className={'font-roboto text-lg font-light leading-[105%]'}>Valuation</p>*/}
+                    {/*                </div>*/}
 
-                        </div>
-                    </SwiperSlide>
+                    {/*            </div>*/}
+                    {/*            <div className={'w-full'}>*/}
+                    {/*                <img*/}
+
+
+                    {/*                    src={'/pitch/tokenomic.svg'}/>*/}
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+
+                    {/*    </div>*/}
+                    {/*</SwiperSlide>*/}
                     <SwiperSlide className={'w-full h-screen flex items-center justify-center'}>
                         <div className={'w-full h-full pl-24 gap-10 flex flex-col justify-center items-center'}>
                             <div className={'grid grid-cols-7 w-full h-full items-center'}>
