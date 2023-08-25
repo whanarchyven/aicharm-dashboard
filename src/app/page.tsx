@@ -51,7 +51,7 @@ export default function Home() {
     return (
         <main className="flex justify-center items-center pitch-bg min-h-screen">
             <div className={'sm:max-w-[1920px] w-full max-w-auto'}>
-                <div className={'w-full h-full bg-[url("/form_bg.png")] grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-32 px-4 py-6 items-center justify-center sm:px-24'}>
+                <div className={'w-full h-full sm:h-screen bg-[url("/form_bg.png")] grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-32 px-4 py-6 items-center justify-center sm:px-24'}>
                     <div
                         className={'flex flex-col sm:col-start-1 gap-4 sm:gap-6 items-center w-full backdrop-blur-xl p-8 bg-white bg-opacity-20 rounded-lg'}>
                         <input value={name} onChange={(event) => {
